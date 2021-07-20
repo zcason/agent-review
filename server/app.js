@@ -34,10 +34,17 @@ app.post('/agents', jsonBodyParser, async (req, res, next) => {
     .json(newAgent);  
 });
 
-restart()
-// app.get('agents/:id', async (req, res, next) => {
 
-// })
+app.get('/agents/:id', async (req, res, next) => {
+  const agentId = req.params.id;
+  const agentDetails = await Agent.findAll({ where: {id: agentId}});
+  const agent = {
+    details: agentDetails[0],
+    reviews: "reviews"
+  };
+
+  return res.json(agent);
+})
 
 // app.post('agents/:id', jsonBodyParser, async (req, res, next) => {
 //   const { review } = req.body;
@@ -63,6 +70,8 @@ restart()
 //     next(error)
 // }
 // })
+
+restart();
 
 
 module.exports = app;
