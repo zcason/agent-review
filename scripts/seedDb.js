@@ -1,4 +1,4 @@
-const { Agent } = require('../server/model')
+const { Agent, Review } = require('../server/model')
 
 
 /* NOTE: THIS WILL DROP THE CURRENT DATABASE */
@@ -6,7 +6,9 @@ seed();
 
 async function seed() {
   /* Create the table for the agents */
+  
   await Agent.sync({ force: true })
+  await Review.sync({ force: true })
 
   /* Insert the data */
   await Promise.all([
@@ -44,6 +46,22 @@ async function seed() {
       address: '53 W 53rd St, New York, NY 10019, United States',
       practiceAreas: ['New York'].join(','),
       aboutMe: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Condimentum vitae sapien pellentesque habitant morbi tristique. Dui accumsan sit amet nulla facilisi morbi tempus. Fringilla urna porttitor rhoncus dolor purus non. Vitae et leo duis ut diam quam. Eget nunc scelerisque viverra mauris. Sed velit dignissim sodales ut eu. Vitae sapien pellentesque habitant morbi tristique senectus et netus. Vitae proin sagittis nisl rhoncus mattis. Pellentesque adipiscing commodo elit at imperdiet dui accumsan. Elementum facilisis leo vel fringilla est ullamcorper eget nulla. Nunc non blandit massa enim. Risus nec feugiat in fermentum posuere urna nec tincidunt praesent.'
+    }),
+    Review.create({
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
+      agentId: 1
+    }),
+    Review.create({
+      details: 'Great agent!',
+      agentId: 1
+    }),
+    Review.create({
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
+      agentId: 3
+    }),
+    Review.create({
+      details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.',
+      agentId: 2
     }),
   ])
 }

@@ -1,6 +1,6 @@
 const express = require('express');
 const { restart } = require('nodemon');
-const { Agent } = require('./model');
+const { Agent, Review } = require('./model');
 
 const app = express();
 const jsonBodyParser = express.json();
