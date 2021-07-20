@@ -37,10 +37,11 @@ app.post('/agents', jsonBodyParser, async (req, res, next) => {
 
 app.get('/agents/:id', async (req, res, next) => {
   const agentId = req.params.id;
-  const agentDetails = await Agent.findAll({ where: {id: agentId}});
+  const agentDetails = await Agent.findAll({ where: {id: agentId} });
+  const agentReviews = await Review.findAll({ where: { agentId } });
   const agent = {
     details: agentDetails[0],
-    reviews: "reviews"
+    reviews: agentReviews
   };
 
   return res.json(agent);
