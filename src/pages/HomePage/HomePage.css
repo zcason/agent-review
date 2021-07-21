@@ -1,0 +1,10 @@
+.input-box input {
+  margin-left: 2%;
+  font-size: 32px;
+  border-style: none;
+}
+
+.input-box hr {
+  margin: 10px 1% 0 1%;
+  border: 1px solid black;
+}

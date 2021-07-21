@@ -1,11 +1,12 @@
 import type { FC } from "react";
 import { useState, useEffect } from "react";
-import Agent from "./Agent";
+import Agent from "../Agent/Agent";
 import { IAgent } from "../../types/Agent";
 import axios from "axios";
 import './Agents.css'
+import filterAgents from "./AgentsServices";
 
-const Agents: FC = () => {
+const Agents: FC<{searchTerm: string}>= ({ searchTerm }) => {
   const [agents, setAgents] = useState<IAgent[]>([]);
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const Agents: FC = () => {
 
   return (
     <div className="agents">
-      {agents.map((agent) => (
+      {filterAgents(searchTerm ,agents).map((agent) => (
         <Agent key={agent.id} agent={agent} />
       ))}
     </div>
