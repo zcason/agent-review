@@ -2,16 +2,16 @@ import type { FC } from "react";
 import './Paginator.css';
 
 interface Props {
-    agentsPerPage: number;
-    totalAgents: number;
+    perPage: number;
+    total: number;
     paginate: (number: number) => void;
     currentPage: number;
 }
 
-const Paginator: FC <Props>= ({ agentsPerPage, totalAgents, paginate, currentPage }) => {
+const Paginator: FC <Props>= ({perPage, total, paginate, currentPage }) => {
     const pageNumbers: number[] = [];
 
-    for(let i =1; i <= Math.ceil(totalAgents/ agentsPerPage); i++) {
+    for(let i =1; i <= Math.ceil(total/perPage); i++) {
         pageNumbers.push(i);
     }
 

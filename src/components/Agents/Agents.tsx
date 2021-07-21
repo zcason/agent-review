@@ -35,17 +35,19 @@ const Agents: FC<{searchTerm: string}>= ({ searchTerm }) => {
   }, []);
 
   return (
-    <div className="agents">
-      {currentAgents.map((agent) => (
-        <Agent key={agent.id} agent={agent} />
-      ))}
-      <Paginator 
-      agentsPerPage={agentsPerPage} 
-      totalAgents={totalAgents} 
-      paginate={paginate}
-      currentPage={currentPage}
-      />
-    </div>
+    <>
+      <div className="agents">
+        {currentAgents.map((agent) => (
+          <Agent key={agent.id} agent={agent} />
+          ))}
+      </div>
+        <Paginator 
+        perPage={agentsPerPage} 
+        total={totalAgents} 
+        paginate={paginate}
+        currentPage={currentPage}
+        />
+      </>
   );
 };
 
