@@ -18,7 +18,7 @@ app.post('/agents', jsonBodyParser, async (req, res, next) => {
   const { firstName, lastName, photoUrl, agentLicence, address, practiceAreas, aboutMe } = req.body;
 
   // checks to see if rquired fileds are missing 
-  for (const field of ['firstName', 'lastName', 'agentLicence', 'address']){
+  for (const field of ['firstName', 'lastName', 'agentLicence', 'address', 'practiceAreas']){
     if (!req.body[field])
       return res.status(400).json({error: `Missing '${field}' in request body`})
   }

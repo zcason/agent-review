@@ -1,11 +1,11 @@
 import { IAgent } from "../../types/Agent"
 
 // filters the list of agents based on there areas of practice
-function filterAgents(searchTermParam: string, agents: IAgent[]) {
+function filterAgents(searchTermParam: string, agents: IAgent[]): IAgent[]{
     // eslint-disable-next-line array-callback-return
-    return agents.filter((agent) => {
-        const searchTerm = searchTermParam.toLowerCase();
-        const areas = agent.practiceAreas.toString().toLowerCase();
+    return agents.filter(agent => {
+        const searchTerm: string = searchTermParam.toLowerCase();
+        const areas: string = agent.practiceAreas.toString().toLowerCase();
         
             if (searchTerm === ""){
                 return agent;
@@ -16,5 +16,3 @@ function filterAgents(searchTermParam: string, agents: IAgent[]) {
 }
 
 export default filterAgents;
-
-
