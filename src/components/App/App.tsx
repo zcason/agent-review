@@ -1,12 +1,28 @@
 import type { FC } from "react";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import AgentDetailsPage from "../../pages/DetailsPage/AgentDetailsPage";
+import HomePage from "../../pages/HomePage/HomePage";
 import "./App.css";
 
-import Agents from "../Agents/Agents";
+
 
 const App: FC = () => {
   return (
     <div className="app">
-      <Agents />
+      <Router>
+        <Switch>
+          <Route
+           exact
+           path={'/'}
+           component={HomePage} 
+          />
+          <Route
+           exact
+           path={'/agent/:id'}
+           component={AgentDetailsPage} 
+          />
+        </Switch>
+      </Router>
     </div>
   );
 };
