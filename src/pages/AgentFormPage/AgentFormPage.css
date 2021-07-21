@@ -1,0 +1,16 @@
+.agent-form-container {
+  margin-top: 15px;
+}
+
+.back-link {
+  margin-left: 50px;
+  color: #9442ff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 600px) {
+  .back-link:hover {
+    color: black;
+  }
+}

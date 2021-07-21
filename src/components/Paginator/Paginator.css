@@ -15,8 +15,8 @@
   font-family: "Roboto", sans-serif;
   list-style: none;
   border-style: solid;
-  border-radius: 8px;
   border-width: 2px;
+  border-radius: 8px;
 }
 
 .page-number-active {
