@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 
-const ReviewForm: FC = () => {
+const ReviewFormPage: FC = () => {
   return (
     <>
       Review Form
@@ -9,4 +9,4 @@ const ReviewForm: FC = () => {
   );
 };
 
-export default ReviewForm;
+export default ReviewFormPage;

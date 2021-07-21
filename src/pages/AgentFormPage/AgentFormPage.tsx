@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 
-const AgentForm: FC = () => {
+const AgentFormPage: FC = () => {
   return (
     <>
       Agent Form
@@ -9,4 +9,4 @@ const AgentForm: FC = () => {
   );
 };
 
-export default AgentForm;
+export default AgentFormPage;
