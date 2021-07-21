@@ -1,4 +1,4 @@
-.event-created {
+.review-created {
   text-align: center;
   margin-top: 10px;
   font-size: 16px;
@@ -13,29 +13,18 @@
   color: red;
 }
 
-.agent-form {
+.review-form {
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin-top: 20px;
 }
 
-.agent-form label {
+.review-form label {
   margin-left: 25%;
 }
 
-.agent-form .form-control {
-  margin-top: 4px;
-  margin-bottom: 15px;
-  margin: 4px auto 15px auto;
-  height: 30px;
-  width: 50%;
-  border-radius: 8px;
-  border-width: thin;
-  padding-left: 5px;
-}
-
-.agent-text-area {
+.review-text-area {
   margin-top: 4px;
   margin-bottom: 15px;
   margin: 4px auto 15px auto;
@@ -46,7 +35,7 @@
   padding-left: 5px;
 }
 
-.agent-form .submit-agent {
+.review-form .submit-review {
   height: 35px;
   width: 100px;
   margin: 5px auto 0 auto;
@@ -59,7 +48,7 @@
 }
 
 @media only screen and (min-width: 600px) {
-  .agent-form .submit-agent:hover {
+  .review-form .submit-review:hover {
     color: #9442ff;
     background-color: #fff;
     border-color: #9442ff;
