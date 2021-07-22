@@ -1,11 +1,12 @@
 import type { FC } from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IAgent } from "../../types/Agent";
 import { IReview } from "../../types/Review";
 import Paginator from "../Paginator/Paginator";
 import AgentReviews from "../AgentReviews/AgentReviews";
+import './AgentDetails.css';
 
 interface Details {
     details: IAgent;
@@ -44,7 +45,7 @@ const AgentDetails: FC = () => {
       }, [id]);
   return (
     <>
-      { agent && <div>
+      { agent && <div className='details-container'>
             <h2>
               {agent.details.firstName + ' ' + agent.details.lastName}
             </h2>
@@ -52,14 +53,16 @@ const AgentDetails: FC = () => {
             <span>Address: {agent.details.address}</span>
             <span>Agent Licence: {agent.details.agentLicence}</span>
             <span>Areas of Practice: {agent.details.practiceAreas}</span>
-            <div>
-                <span>About Me</span>
+            <div className='about-me-container'>
+                <p>About Me</p>
                 <div>{agent.details.aboutMe}</div>
             </div>
       </div>}
-      {currentReviews.map((review) => (
+      <div className='review-card-container'>
+        {currentReviews.map((review) => (
           <AgentReviews key={review.id} review={review} />
-      ))}
+          ))}
+      </div>
       <Paginator
       perPage={reviewsPerPage} 
       total={totalReviews} 

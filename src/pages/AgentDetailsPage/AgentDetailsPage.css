@@ -1,0 +1,38 @@
+.agent-header-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 8% 0 3%;
+}
+
+.agent-header-box .back-link {
+  margin-left: 50px;
+  color: #9442ff;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.agent-header-box button {
+  margin-top: 5px;
+  height: 40px;
+  width: 120px;
+  color: #fff;
+  background-color: #9442ff;
+  border-style: none;
+  border-radius: 20px;
+  box-shadow: 4px 4px 4px 1px #9442ff;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 600px) {
+  .agent-header-box .back-link:hover {
+    color: black;
+  }
+
+  .agent-header-box button:hover {
+    color: #9442ff;
+    background-color: #fff;
+    border-color: #9442ff;
+    border-style: solid;
+    border-width: 2px;
+  }
+}

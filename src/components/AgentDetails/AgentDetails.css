@@ -1,0 +1,25 @@
+.details-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 16px;
+}
+
+.about-me-container {
+  margin: 0 10px;
+}
+
+.about-me-container p {
+  text-align: center;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.review-card-container {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin-top: 50px;
+  margin-bottom: 35px;
+}
