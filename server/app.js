@@ -5,6 +5,12 @@ const { Agent, Review } = require('./model');
 const app = express();
 const jsonBodyParser = express.json();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.get('/agents', async (req, res, next) => {
   try {
     const agents = await Agent.findAll();

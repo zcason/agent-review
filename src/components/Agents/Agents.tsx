@@ -6,6 +6,7 @@ import filterAgents from "./AgentsServices";
 import Agent from "../Agent/Agent";
 import Paginator from "../Paginator/Paginator";
 import './Agents.css';
+import { Link } from "react-router-dom";
 
 const Agents: FC<{searchTerm: string}>= ({ searchTerm }) => {
   const [agents, setAgents] = useState<IAgent[]>([]);
@@ -38,7 +39,9 @@ const Agents: FC<{searchTerm: string}>= ({ searchTerm }) => {
     <>
       <div className="agents">
         {currentAgents.map((agent) => (
-          <Agent key={agent.id} agent={agent} />
+          <Link className='agent-link' to={`agent/${agent.id}`}>
+            <Agent key={agent.id} agent={agent} />
+          </Link>
           ))}
       </div>
         <Paginator 

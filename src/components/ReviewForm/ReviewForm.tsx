@@ -20,13 +20,11 @@ const ReviewForm: FC = () => {
   const { id }  = useParams<Props>();
 
   const submitForm: SubmitHandler<IFormInputs> = async (review: IFormInputs) => {
-      // console.log(JSON.stringify(agent))
-
+    // console.log(review)
       try {
           await axios.post(`http://localhost:3001/agents/${id}`, review);
           setReviewCreated(true);
           setError('');
-          review.review = "";
       } catch (error) {
           setError(error.message);
       }  
@@ -34,7 +32,7 @@ const ReviewForm: FC = () => {
 
 return (
   <>
-      {reviewCreated && <div className='review-created'>Event Created</div>}
+      {reviewCreated && <div className='review-created'>Review Created</div>}
       {error && <div className='error'>{error.toString}</div> }
       <form 
       onSubmit={handleSubmit(submitForm)}
