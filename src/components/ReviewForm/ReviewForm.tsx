@@ -1,4 +1,4 @@
-import type  { FC } from 'react';
+import  { FC, useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
@@ -14,13 +14,25 @@ interface Props {
 }
 
 const ReviewForm: FC = () => {
+  const [formValues, setFormValues] = useState<IFormInputs>({review: ""});
   const { register, handleSubmit } = useForm<IFormInputs>();
-  const [error, setError] = useState<string>("");
   const [reviewCreated, setReviewCreated] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
   const { id }  = useParams<Props>();
 
+  useEffect(() => {
+    const data: string | null = localStorage.getItem('form-inputs');
+    if (data) {
+        setFormValues(JSON.parse(data))
+    }
+  }, [])
+
+  useEffect(() => {
+      localStorage.setItem('form-inputs', JSON.stringify(formValues));
+  });
+
   const submitForm: SubmitHandler<IFormInputs> = async (review: IFormInputs) => {
-    // console.log(review)
+
       try {
           await axios.post(`http://localhost:3001/agents/${id}`, review);
           setReviewCreated(true);
@@ -44,6 +56,9 @@ return (
               {...register('review')}
               id='review'
               className='review-text-area'
+              value={formValues.review}
+              onChange={(e) => setFormValues({ review: e.target.value})}
+
               required
           />
           <button className='submit-review' type='submit'>Submit</button>

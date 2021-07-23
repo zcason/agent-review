@@ -29,7 +29,17 @@ app.post('/agents', jsonBodyParser, async (req, res, next) => {
       return res.status(400).json({error: `Missing '${field}' in request body`})
   }
 
+  // checks to see if user inserted any input else set to field to null
+  if (!photoUrl.split(" ").join("")) {
+    photoUrl = null;
+  }
+  // checks to see if user inserted any input else set to field to null
+  if (!aboutMe.split(" ").join("")) {
+    aboutMe = null;
+  }
+
   try {
+
       await Agent.create({
         firstName,
         lastName,

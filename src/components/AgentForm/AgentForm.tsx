@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type  { FC } from 'react';
+import  React, { FC, useEffect } from 'react';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import './AgentForm.css';
@@ -7,26 +7,39 @@ import './AgentForm.css';
 interface IFormInputs {
     firstName: string;
     lastName: string;
-    photoUrl: string | null; 
+    photoUrl: string; 
     agentLicence: string; 
     address: string; 
     practiceAreas: string;
-    aboutMe: string | null;
+    aboutMe?: string;
 }
 
 const AgentForm: FC = () => {
     const { register, handleSubmit, formState: {errors} } = useForm<IFormInputs>();
+    const [formValues, setFormValues] = useState<IFormInputs>({
+        firstName: "",
+        lastName: "",
+        photoUrl: "",
+        agentLicence: "",
+        address: "",
+        practiceAreas: "",
+        aboutMe: ""
+    });
     const [error, setError] = useState<string>("");
     const [eventCreated, setEventCreated] = useState<boolean>(false);
 
-    const submitForm: SubmitHandler<IFormInputs> = async (agent: IFormInputs) => {
-        if (!agent.photoUrl) {
-            agent.photoUrl = null;
+    useEffect(() => {
+        const data: string | null = localStorage.getItem('form-inputs');
+        if (data) {
+            setFormValues(JSON.parse(data))
         }
-        if (!agent.aboutMe) {
-            agent.aboutMe = null;
-        }
+    }, [])
 
+    useEffect(() => {
+        localStorage.setItem('form-inputs', JSON.stringify(formValues));
+    });
+
+    const submitForm: SubmitHandler<IFormInputs> = async (agent: IFormInputs) => {
         try {
             await axios.post('/agents', agent);
             setEventCreated(true);
@@ -50,8 +63,10 @@ const AgentForm: FC = () => {
                 {...register('firstName')}
                 id='firstName'
                 className='form-control'
-                type='text'
+                value={formValues.firstName}
+                onChange={(e) => setFormValues({...formValues, firstName: e.target.value})}
                 placeholder='Joe'
+                type='text'
                 required
             />
             {errors.firstName && <span>This field is required</span>}
@@ -61,6 +76,8 @@ const AgentForm: FC = () => {
                 {...register('lastName')}
                 id='lastName'
                 className='form-control'
+                value={formValues.lastName}
+                onChange={(e) => setFormValues({...formValues, lastName: e.target.value})}
                 type='text'
                 placeholder='Persons'
                 required
@@ -72,6 +89,8 @@ const AgentForm: FC = () => {
                 {...register('photoUrl')}
                 id='photoUrl'
                 className='form-control'
+                value={formValues.photoUrl}
+                onChange={(e) => setFormValues({...formValues, photoUrl: e.target.value})}
                 placeholder='https://unsplash.com/photos/KBzb07tXYWA?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink'
                 type='text'
             />
@@ -81,8 +100,10 @@ const AgentForm: FC = () => {
                 {...register('agentLicence')}
                 id='agentLicence'
                 className='form-control'
-                type='text'
+                value={formValues.agentLicence}
+                onChange={(e) => setFormValues({...formValues, agentLicence: e.target.value})}
                 placeholder='123456'
+                type='text'
                 required
             />
             {errors.agentLicence && <span>This field is required</span>}
@@ -92,8 +113,10 @@ const AgentForm: FC = () => {
                 {...register('address')}
                 id='address'
                 className='form-control'
-                type='text'
+                value={formValues.address}
+                onChange={(e) => setFormValues({...formValues, address: e.target.value})}
                 placeholder="555 Some Place Rd, Los Angeles, CA 90077"
+                type='text'
                 required
             />
             {errors.address && <span>This field is required</span>}
@@ -103,8 +126,10 @@ const AgentForm: FC = () => {
                 {...register('practiceAreas')}
                 id='practiceAreas'
                 className='form-control'
-                type='text'
+                value={formValues.practiceAreas}
+                onChange={(e) => setFormValues({...formValues, practiceAreas: e.target.value})}
                 placeholder='Los Angeles, San Francisco, Miami'
+                type='text'
                 required
             />
             {errors.practiceAreas && <span>This field is required</span>}
@@ -114,6 +139,8 @@ const AgentForm: FC = () => {
                 {...register('aboutMe')}
                 id='aboutMe'
                 className='agent-text-area'
+                value={formValues.aboutMe}
+                onChange={(e) => setFormValues({...formValues, aboutMe: e.target.value})}
             />
             <button className='submit-agent' type='submit'>Submit</button>
         </form>
