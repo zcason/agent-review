@@ -28,9 +28,9 @@ const Agents: FC<{searchTerm: string}>= ({ searchTerm }) => {
    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    async function fetchInitialData() {
-      const response = await axios.get("/agents");
-      setAgents(response.data);
+   function fetchInitialData() {
+      axios.get("/agents").then(res => setAgents(res.data as IAgent[]))
+      
     }
     fetchInitialData();
   }, []);
